@@ -38,7 +38,7 @@ const calculateFlames = (me, crush) => {
     }
     count = me.length + crush.length - 2 * count;
     let index = (count % flames.length) - 1;
-    if (index < 0) index = flames.length - 1;
+    if (index < 0) index = 0;
 
     let finalResult = flames[index];
     let style = flamesStyles[finalResult];
