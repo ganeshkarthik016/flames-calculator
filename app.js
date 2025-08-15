@@ -14,40 +14,51 @@ const flamesStyles = {
     "SIBLINGS": { color: "#3498db", emoji: "👨‍👩‍👧‍👦", msg: "Better luck in your next life 😏" }
 };
 
-
 startBtn.addEventListener("click", () => {
-    let yourname = yourNameInput.value.trim().toLowerCase().replace(/\s+/g, '').split('').sort().join('');
-    let crushname = crushNameInput.value.trim().toLowerCase().replace(/\s+/g, '').split('').sort().join('');
+    let name1 = yourNameInput.value.trim().toLowerCase().replace(/\s+/g, '');
+    let name2 = crushNameInput.value.trim().toLowerCase().replace(/\s+/g, '');
 
-    if (yourname === "" || crushname === "") {
+    if (name1 === "" || name2 === "") {
         alert("Please enter both names.");
         return;
     }
 
-    calculateFlames(yourname, crushname);
+    let finalResult = calculateFlames(name1, name2);
+    displayResult(finalResult);
     resultContainer.style.display = "flex";
 });
 
-const calculateFlames = (me, crush) => {
-    let count = 0;
-    for (let char of me) {
-        if (crush.includes(char)) {
-            count++;
-            crush = crush.replace(char, '');
+const calculateFlames = (name1, name2) => {
+    let me = name1.split('');
+    let crush = name2.split('');
+
+    for (let i = 0; i < me.length; i++) {
+        let idx = crush.indexOf(me[i]);
+        if (idx !== -1) {
+            me[i] = '';
+            crush[idx] = '';
         }
     }
-    count = me.length + crush.length - 2 * count;
-    let index = (count % flames.length) - 1;
-    if (index < 0) index = 0;
 
-    let finalResult = flames[index];
+    let count = (me.join('') + crush.join('')).length;
+
+    let tempFlames = [...flames];
+    let index = 0;
+    while (tempFlames.length > 1) {
+        index = (index + count - 1) % tempFlames.length;
+        tempFlames.splice(index, 1);
+    }
+
+    return tempFlames[0];
+};
+
+const displayResult = (finalResult) => {
     let style = flamesStyles[finalResult];
-
     result.innerHTML = `
         <div style="text-align:center; font-size:2.5rem; font-weight:bold; color:${style.color}">
             ${style.emoji} ${finalResult}
         </div>
-        <div style="font-size:1.2rem; margin-top:10px; color:#fff;">
+        <div style="font-size:1.3rem; margin-top:10px; color:#fff;">
             ${style.msg}
         </div>
     `;
