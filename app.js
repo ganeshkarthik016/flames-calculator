@@ -29,18 +29,16 @@ startBtn.addEventListener("click", () => {
 });
 
 const calculateFlames = (name1, name2) => {
-    let me = name1.split('');
-    let crush = name2.split('');
+    let freq1 = Array(26).fill(0);
+    let freq2 = Array(26).fill(0);
 
-    for (let i = 0; i < me.length; i++) {
-        let idx = crush.indexOf(me[i]);
-        if (idx !== -1) {
-            me[i] = '';
-            crush[idx] = '';
-        }
+    for (let ch of name1) freq1[ch.charCodeAt(0) - 97]++;
+    for (let ch of name2) freq2[ch.charCodeAt(0) - 97]++;
+
+    let count = 0;
+    for (let i = 0; i < 26; i++) {
+        count += Math.abs(freq1[i] - freq2[i]); 
     }
-
-    let count = (me.join('') + crush.join('')).length;
 
     let tempFlames = [...flames];
     let index = 0;
@@ -55,10 +53,10 @@ const calculateFlames = (name1, name2) => {
 const displayResult = (finalResult) => {
     let style = flamesStyles[finalResult];
     result.innerHTML = `
-        <div style="text-align:center; font-size:2.5rem; font-weight:bold; color:${style.color}">
+        <div style="text-align:center; font-size:2.8rem; font-weight:bold; color:${style.color}">
             ${style.emoji} ${finalResult}
         </div>
-        <div style="font-size:1.3rem; margin-top:10px; color:#fff;">
+        <div style="font-size:1.3rem; margin-top:12px; color:#fff;">
             ${style.msg}
         </div>
     `;
