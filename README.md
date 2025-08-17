@@ -1,6 +1,5 @@
-# 🔥 FLAMES Game 💖
-A fun little love tester made with **HTML**, **CSS**, and **JavaScript**.  
-Check your relationship status – Love, Marriage, Enemies, and more – with a touch of sarcasm and emojis! 😏
+# 🔥 FLAMES Game 
+A fun little game made with **HTML**, **CSS**, and **JavaScript**.  
 
 ---
 
@@ -25,3 +24,4 @@ Check your relationship status – Love, Marriage, Enemies, and more – with a 
 
 ## ❤️ Note
 This is just for **fun**. Don’t take the results too seriously… unless you get *Marriage*, then start saving up! 💍😂
+
