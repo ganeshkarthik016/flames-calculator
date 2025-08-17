@@ -51,12 +51,12 @@ const calculateFlames = (name1, name2) => {
 };
 
 const displayResult = (finalResult) => {
-    let style = flamesStyles[finalResult];
+    let style = flamesStyles[finalResult] ;
     result.innerHTML = `
         <div style="text-align:center; font-size:2.8rem; font-weight:bold; color:${style.color}">
             ${style.emoji} ${finalResult}
         </div>
-        <div style="font-size:1.3rem; margin-top:12px; color:#fff;">
+        <div style="font-size:1.3rem ; margin-top:12px; color:#fff;">
             ${style.msg}
         </div>
     `;
